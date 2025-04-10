@@ -1,12 +1,14 @@
 {
   "name": "generate-index-script",
   "version": "1.0.0",
-  "description": "Generates an index of poll markdown files.",
-  "main": "generate-index.js",
+  "description": "Generates index files for governance markdown files.",
+  "main": "dist/generate-polls-index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/generate-index.js",
-    "generate": "ts-node generate-index.ts"
+    "start": "npm run generate:all",
+    "generate:polls": "ts-node generate-polls-index.ts",
+    "generate:exec": "ts-node generate-exec-index.ts",
+    "generate:all": "npm run generate:polls && npm run generate:exec"
   },
   "dependencies": {
     "glob": "^10.3.10",

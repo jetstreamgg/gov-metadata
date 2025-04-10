@@ -9,6 +9,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["generate-index.ts"],
+  "include": ["generate-polls-index.ts", "generate-exec-index.ts"],
   "exclude": ["node_modules"]
 }

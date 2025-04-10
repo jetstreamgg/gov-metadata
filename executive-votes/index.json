@@ -1,0 +1,20 @@
+[
+  {
+    "path": "executive-votes/2023/executive-vote-2023-01-07.md",
+    "metadata": {
+      "title": "Template - [Executive Vote] MOMC Parameter Changes, GUSD PSM tout Decrease, CES MKR Transfer, Flash Mint Module Upgrade, Cage Aave D3M - January 27, 2023",
+      "summary": "Latest MOMC parameter changes, decrease the GUSD PSM Fee Out (tout), transfer MKR to CES, complete upgrades to the Flash Mint Module, cage the Aave D3M to prepare for a new deployment.",
+      "date": "2023-01-27T00:00:00.000Z",
+      "address": "0x40cdba18bfBc525a6cf35251E7d90a9B5b66CE30"
+    }
+  },
+  {
+    "path": "executive-votes/2024/executive-vote-2024-04-04.md",
+    "metadata": {
+      "title": "Template - [Executive Vote] Increase GSM Pause Delay, Increase Spark MetaMorpho Vault Maximum Debt Ceiling, Add Native Vaults to Debt Ceiling Breaker, SparkLend Proxy Spell, and TACO Resolutions - April 4, 2024",
+      "summary": "Increase the Governance Security Module Pause Delay, increase Spark MetaMorpho Maximum Debt Ceiling, add native vaults to Debt Ceiling Breaker, Trigger SparkLend Proxy Spell, and approve BT Project Ethena Resolutions.",
+      "date": "2024-04-04T00:00:00.000Z",
+      "address": "0x016e2848993CFbC952a93BA3D496162Afe703cA8"
+    }
+  }
+]
