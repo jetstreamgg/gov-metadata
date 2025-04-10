@@ -8,7 +8,8 @@
     "start": "npm run generate:all",
     "generate:polls": "ts-node generate-polls-index.ts",
     "generate:exec": "ts-node generate-exec-index.ts",
-    "generate:all": "npm run generate:polls && npm run generate:exec"
+    "generate:delegates": "ts-node generate-delegates-index.ts",
+    "generate:all": "npm run generate:polls && npm run generate:exec && npm run generate:delegates"
   },
   "dependencies": {
     "glob": "^10.3.10",

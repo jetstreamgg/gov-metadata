@@ -8,6 +8,7 @@ on:
       # Trigger on changes in polls or executive directories
       - 'polls/**.md'
       - 'executive-votes/**.md'
+      - 'delegates/**.md'
       # Trigger on changes to scripts or workflow
       - '.github/workflows/update-index.yml'
       - 'scripts/**.ts'
@@ -24,34 +25,37 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js and pnpm
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          pnpm-version: 9 # Match the lockfile version (v9.0)
           cache: 'pnpm'
           cache-dependency-path: scripts/pnpm-lock.yaml
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile # Use pnpm install
+        run: pnpm install --frozen-lockfile
         working-directory: ./scripts
 
       - name: Generate index files
-        run: pnpm run generate:all # Use pnpm run
+        run: pnpm run generate:all
         working-directory: ./scripts
 
       - name: Check for changes in index files
         id: git-check
         run: |
-          git diff --quiet polls/index.json executive-votes/index.json || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet polls/index.json executive-votes/index.json delegates/index.json || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # Add both index files if they exist and have changed
-          git add polls/index.json executive-votes/index.json
+          git add polls/index.json executive-votes/index.json delegates/index.json
           git commit -m "chore: Update governance index files [skip ci]"
           git push
         env:
