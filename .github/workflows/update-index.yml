@@ -16,7 +16,7 @@ on:
       - 'scripts/tsconfig.json'
 
 jobs:
-  update-indexes: # Renamed job for clarity
+  update-index:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -25,17 +25,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
           cache-dependency-path: scripts/pnpm-lock.yaml
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
