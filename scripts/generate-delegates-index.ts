@@ -11,9 +11,18 @@ interface DelegateMetadata {
   [key: string]: any;
 }
 
+interface DelegateMetrics {
+  combined_participation: string;
+  poll_participation: string;
+  exec_participation: string;
+  communication: string;
+  start_date: string;
+}
+
 interface IndexEntry {
   path: string;
   metadata: DelegateMetadata;
+  metrics?: DelegateMetrics;
 }
 
 // Define the directory containing the delegate markdown files
@@ -54,6 +63,20 @@ async function generateDelegateIndex() {
       const parsed = matter(fileContent);
       const metadata = parsed.data as DelegateMetadata;
 
+      const delegateFolderPath = path.dirname(filePath);
+      const directoryContents = fs.readdirSync(delegateFolderPath, 'utf-8');
+      const metricsFileName = 'metrics.json';
+
+      let delegateMetrics: DelegateMetrics | undefined;
+
+      // If we find metrics, attach them to the index entry
+      if (directoryContents.includes(metricsFileName)) {
+        const metricsFilePath = path.join(delegateFolderPath, metricsFileName);
+        const metricsFileContent = fs.readFileSync(metricsFilePath, 'utf-8');
+        const metrics = JSON.parse(metricsFileContent);
+        delegateMetrics = metrics;
+      };
+
       // Construct the relative path from the repo root
       const relativePath = path.join('delegates', file);
 
@@ -68,6 +91,7 @@ async function generateDelegateIndex() {
       indexData.push({
         path: relativePath,
         metadata: metadata, // Metadata now includes the address if found
+        ...{ metrics: delegateMetrics }
       });
     }
 
