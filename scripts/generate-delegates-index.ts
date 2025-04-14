@@ -73,10 +73,13 @@ async function generateDelegateIndex() {
       if (directoryContents.includes(metricsFileName)) {
         const metricsFilePath = path.join(delegateFolderPath, metricsFileName);
         const metricsFileContent = fs.readFileSync(metricsFilePath, 'utf-8');
-        const metrics = JSON.parse(metricsFileContent);
-        delegateMetrics = metrics;
-      };
-
+        try {
+          const metrics = JSON.parse(metricsFileContent);
+          delegateMetrics = metrics;
+        } catch (error) {
+          console.error(`Error parsing metrics file for ${relativePath}: ${error.message}`);
+        }
+      }
       // Construct the relative path from the repo root
       const relativePath = path.join('delegates', file);
 
