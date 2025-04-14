@@ -69,6 +69,9 @@ async function generateDelegateIndex() {
 
       let delegateMetrics: DelegateMetrics | undefined;
 
+      // Construct the relative path from the repo root
+      const relativePath = path.join('delegates', file);
+
       // If we find metrics, attach them to the index entry
       if (directoryContents.includes(metricsFileName)) {
         const metricsFilePath = path.join(delegateFolderPath, metricsFileName);
@@ -77,11 +80,13 @@ async function generateDelegateIndex() {
           const metrics = JSON.parse(metricsFileContent);
           delegateMetrics = metrics;
         } catch (error) {
-          console.error(`Error parsing metrics file for ${relativePath}: ${error.message}`);
+          if (error instanceof Error) {
+            console.error(`Error parsing metrics file for ${relativePath}: ${error.message}`);
+          } else {
+            console.error(`Error parsing metrics file for ${relativePath}: An unknown error occurred`);
+          }
         }
       }
-      // Construct the relative path from the repo root
-      const relativePath = path.join('delegates', file);
 
       // Extract the directory name (potential address) from the relative path
       const dirName = path.basename(path.dirname(relativePath));
