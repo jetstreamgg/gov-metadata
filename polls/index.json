@@ -86,5 +86,49 @@
       "start_date": "2024-11-11T16:00:00.000Z",
       "end_date": "2024-11-14T16:00:00.000Z"
     }
+  },
+  {
+    "path": "polls/2025/2025-04-14-atlas-edits-2.md",
+    "metadata": {
+      "title": "Atlas Edit Weekly Cycle Proposal - April 14, 2025",
+      "summary": "Signal your support or opposition to this Atlas edit, which 1) modifies SKY and Star token emissions, 2) increases the Integration Boost budget, and 3) modifies the Sky Ecosystem Liquidity Bootstrapping provisions.",
+      "discussion_link": "https://forum.sky.money/t/atlas-edit-weekly-cycle-proposal-week-of-2024-11-11-0/25507",
+      "parameters": {
+        "input_format": {
+          "type": "single-choice",
+          "abstain": [
+            0
+          ]
+        },
+        "victory_conditions": [
+          {
+            "type": "and",
+            "conditions": [
+              {
+                "type": "plurality"
+              },
+              {
+                "type": "comparison",
+                "comparator": ">=",
+                "value": 20000
+              }
+            ]
+          },
+          {
+            "type": "default",
+            "value": 2
+          }
+        ],
+        "result_display": "single-vote-breakdown"
+      },
+      "version": "v2.0.0",
+      "options": {
+        "0": "Abstain",
+        "1": "Yes",
+        "2": "No"
+      },
+      "start_date": "2025-04-14T16:00:00.000Z",
+      "end_date": "2026-04-14T16:00:00.000Z"
+    }
   }
 ]
